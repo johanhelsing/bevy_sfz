@@ -1,0 +1,32 @@
+//------------------------------------------------------------------------------
+// Multi-sample piano with velocity layers
+// Uses multiple piano samples for different dynamics
+//------------------------------------------------------------------------------
+<control>
+default_path=../
+
+<global>
+volume=-6
+ampeg_release=0.5
+
+<group>
+group_label=Piano Soft Layer
+volume=0
+
+<region>
+sample=piano_c4.ogg
+lokey=21 hikey=108
+lovel=1 hivel=63
+pitch_keycenter=60
+tune=0
+
+<group>
+group_label=Piano Loud Layer
+volume=3
+
+<region>
+sample=piano_c4.ogg  // In real use, this would be a different, louder sample
+lokey=21 hikey=108
+lovel=64 hivel=127
+pitch_keycenter=60
+tune=12  // Slightly detuned for different character
