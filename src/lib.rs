@@ -267,14 +267,14 @@ impl AssetLoader for SfzAssetLoader {
         })?;
 
         // Log what we parsed for debugging
-        info!(
+        debug!(
             "SFZ Loaded '{}': {} regions",
             file_name,
             instrument.regions.len()
         );
         if !instrument.regions.is_empty() {
             let sample_region = &instrument.regions[0];
-            info!(
+            debug!(
                 "SFZ First region sample: {:?}, opcodes: {}",
                 sample_region.opcodes.get("sample"),
                 sample_region.opcodes.len()
@@ -282,7 +282,7 @@ impl AssetLoader for SfzAssetLoader {
 
             // Log some key opcodes from first region
             for (key, opcode) in sample_region.opcodes.iter().take(5) {
-                info!("SFZ First region opcode: {} = {:?}", key, opcode);
+                debug!("SFZ First region opcode: {} = {:?}", key, opcode);
             }
         }
 
