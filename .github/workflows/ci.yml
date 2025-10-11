@@ -12,6 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: dtolnay/rust-toolchain@stable
+      - name: Install dependencies
+        run: sudo apt-get update; sudo apt-get install -y --no-install-recommends libasound2-dev libudev-dev
       - uses: Swatinem/rust-cache@v2
       - run: cargo check --all-targets
 
@@ -20,6 +22,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: dtolnay/rust-toolchain@stable
+      - name: Install dependencies
+        run: sudo apt-get update; sudo apt-get install -y --no-install-recommends libasound2-dev libudev-dev
       - uses: Swatinem/rust-cache@v2
       - run: cargo test
 
@@ -30,6 +34,8 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt, clippy
+      - name: Install dependencies
+        run: sudo apt-get update; sudo apt-get install -y --no-install-recommends libasound2-dev libudev-dev
       - uses: Swatinem/rust-cache@v2
       - run: cargo fmt --all -- --check
       - run: cargo clippy -- -D warnings
