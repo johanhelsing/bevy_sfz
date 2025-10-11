@@ -6,10 +6,10 @@
 
 use bevy::{
     asset::{AssetLoader, AsyncReadExt, LoadContext, io::Reader},
+    platform::collections::{HashMap, HashSet},
     prelude::*,
 };
 use sofiza::{Instrument as SofizaInstrument, Opcode, Region};
-use std::collections::HashMap;
 use std::path::PathBuf;
 use thiserror::Error;
 
@@ -287,7 +287,7 @@ impl AssetLoader for SfzAssetLoader {
         }
 
         // Collect all unique sample paths from regions
-        let mut sample_paths = std::collections::HashSet::new();
+        let mut sample_paths = HashSet::new();
         for region in &instrument.regions {
             if let Some(Opcode::sample(path)) = region.opcodes.get("sample") {
                 sample_paths.insert(path.clone());
