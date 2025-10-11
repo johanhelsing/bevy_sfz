@@ -260,9 +260,9 @@ impl AssetLoader for SfzAssetLoader {
             // More detailed error handling for common issues
             let error_msg = format!("{:?}", e);
             if error_msg.contains("No such file") || error_msg.contains("cannot find") {
-                SfzLoaderError::SampleNotFound(format!("Sample file not found: {}", error_msg))
+                SfzLoaderError::SampleNotFound(format!("Sample file not found: {error_msg}"))
             } else {
-                SfzLoaderError::Parse(format!("Failed to parse SFZ: {}", error_msg))
+                SfzLoaderError::Parse(format!("Failed to parse SFZ: {error_msg}"))
             }
         })?;
 
