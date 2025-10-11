@@ -240,10 +240,17 @@ impl AssetLoader for SfzAssetLoader {
 
         // Extract paths before we start borrowing load_context mutably
         let sfz_path_buf = load_context.path().to_path_buf();
+
+        // Get parent directory for resolving relative sample paths.
+        // parent() only returns None for root paths, which shouldn't happen in Bevy's asset system.
         let sfz_dir = sfz_path_buf
             .parent()
             .unwrap_or(std::path::Path::new(""))
             .to_path_buf();
+
+        // Extract instrument name from filename for metadata.
+        // file_stem() only returns None for paths like ".." or empty paths, which shouldn't occur
+        // since this loader is only triggered for .sfz files with valid filenames.
         let file_name = sfz_path_buf
             .file_stem()
             .and_then(|s| s.to_str())
